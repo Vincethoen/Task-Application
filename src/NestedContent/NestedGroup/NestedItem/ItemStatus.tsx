@@ -1,8 +1,15 @@
-import React from 'react';
+import '../../../style.css'
 
-const ItemStatus = () => {
+const ItemStatus = ({ id }: { id: string; }) => {
   return (
-    <div>ItemStatus</div>
+    <div className='status-container'>
+      <button>
+        <img src="../../../src/assets/previous.svg" alt="previous" />
+      </button>
+      <button>
+        <img src="../../../src/assets/next.svg" alt="next" />
+      </button>
+    </div>
   )
 }
 

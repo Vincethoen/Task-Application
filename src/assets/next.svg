@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #9da5b4;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Rectangle_1_copy_24" data-name="Rectangle 1 copy 24" class="cls-1" d="M2,9H3V8H4V7H5V6H6V5H7V4H6V3H5V2H4V1H3V0H2V9Z"/>
+</svg>

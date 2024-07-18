@@ -1,19 +1,26 @@
-import React from 'react';
 import ItemInput from './NestedItem/ItemInput';
 import ItemIcon from './NestedItem/ItemIcon';
 import ItemSubject from './NestedItem/ItemSubject';
 import ItemStatus from './NestedItem/ItemStatus';
 
-const Item = () => {
+const Item = ({ id }: { id: string; }) => {
   return (
-    <>
-      <ItemInput />
-      <div>
-        <ItemIcon />
-        <ItemSubject />
-        <ItemStatus />
+    <li>
+      <ItemInput
+        id={id}
+      />
+      <div className='item-container'>
+        <ItemIcon
+          id={id}
+        />
+        <ItemSubject
+          id={id}
+        />
+        <ItemStatus
+          id={id}
+        />
       </div>
-    </>
+    </li>
   )
 }
 

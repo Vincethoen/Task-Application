@@ -1,0 +1,41 @@
+@font-face {
+  font-family: F77MinecraftRegular;
+  src: url(../assets/F77MinecraftRegular.ttf);
+}
+
+:root {
+  /* Light theme */
+  --primary-color: #40506d;
+  --secondary-color: #f4f5f7;
+  --tertiary-color: #d8dbe3;
+  --background-color: #ffff;
+  --primary-text-color: #40506d;
+  --secondary-text-color: #9da5b4;
+  --highlight-color: #7da7d9;
+  /* Dark theme */
+
+  font-family: 'F77MinecraftRegular';
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--primary-color);
+  background-color: var(--background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+}

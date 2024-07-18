@@ -1,8 +1,21 @@
-import React from 'react'
+import { useContext } from 'react';
+import { GroupFunctionsType, GroupFunctionsContext } from '../App';
+import '../style.css';
 
 const AddGroup = () => {
+
+  const context = useContext<GroupFunctionsType | undefined>(GroupFunctionsContext);
+
+  if (!context) {
+    return null;
+  }
+
   return (
-    <div>AddGroup</div>
+    <>
+      <button onClick={context.addGroup} className='add-group-button'>
+        Add Group
+      </button>
+    </>
   )
 }
 

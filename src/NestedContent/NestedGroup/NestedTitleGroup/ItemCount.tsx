@@ -1,8 +1,10 @@
-import React from 'react';
+type props = {
+  amountOfItems: number;
+}
 
-const ItemCount = () => {
+const ItemCount = ({ amountOfItems } :props) => {
   return (
-    <div>ItemCount</div>
+    <h2>{amountOfItems}</h2>
   )
 }
 

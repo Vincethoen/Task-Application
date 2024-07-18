@@ -1,15 +1,24 @@
-import React from 'react';
+import SearchTask from './NestedHeader/SearchTask';
 import AddTask from './NestedHeader/AddTask';
 import AddGroup from './NestedHeader/AddGroup';
-import SearchTask from './NestedHeader/SearchTask';
+import './style.css';
 
 const Header = () => {
+  
+  
   return (
-    <>
-      <AddTask />
-      <AddGroup />
-      <SearchTask />
-    </>
+    <header>
+      <div className='title-container'>
+        <h1 className='title'>
+          TaskBoard
+        </h1>
+      </div>
+      <div className='btn-container'>
+        <AddTask />
+        <AddGroup />
+        <SearchTask />
+      </div>
+    </header>
   )
 }
 

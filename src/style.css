@@ -1,0 +1,170 @@
+@font-face {
+    font-family: F77MinecraftRegular;
+    src: url(../assets/F77MinecraftRegular.ttf);
+}
+
+:root {
+    /* Light theme */
+    --primary-color: #40506d;
+    --secondary-color: #f4f5f7;
+    --tertiary-color: #d8dbe3;
+    --background-color: #ffff;
+    --primary-text-color: #40506d;
+    --secondary-text-color: #9da5b4;
+    --highlight-color: #7da7d9;
+    /* Dark theme */
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+a,
+button,
+input {
+    font-family: F77MinecraftRegular !important;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* <Header /> */
+header {
+    display: grid;
+
+}
+
+.title-container {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    margin: 24px;
+}
+
+.title {
+    width: 100%;
+    margin: 24px;
+}
+
+.btn-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 24px;
+    background-color: var(--background-color);
+    color: var(--tertiary-color);
+    margin: 0px 24px 0px 24px;
+}
+
+.input-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.input-container > button {
+    margin-right: 12px;
+}
+
+button {
+    padding: 8px;
+    background-color: var(--secondary-color);
+    border: var(--tertiary-color) solid 2px;
+    color: var(--secondary-text-color);
+}
+
+button:active {
+    outline: none;
+    border: 2px solid var(--highlight-color);
+    border-radius: 0px;
+    color: var(--highlight-color);
+}
+
+input {
+    padding: 8px;
+    background-color: var(--secondary-color);
+    border: var(--tertiary-color) solid 2px;
+    color: var(--secondary-text-color);
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid var(--highlight-color);
+    border-radius: 0px;
+    color: var(--secondary-text-color);
+}
+
+input::placeholder {
+    text-align: center;
+    color: var(--secondary-text-color);
+} 
+
+/* <Content /> */
+section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin: 24px;
+}
+
+article {
+    background-color: var(--secondary-color);
+    padding: 16px;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    list-style: none;
+    margin: 16px 8px;
+    padding: 8px 16px;
+    background-color: var(--background-color);
+}
+
+.item-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+}
+.item-input {
+    margin: 16px 16px;
+}
+.item-container > img {
+    margin: auto auto auto 0px;    
+}
+.status-container {
+    margin: auto 0px auto auto;
+}
+.status-container > button {
+    margin: auto 2px auto auto;
+}
+
+.item-subject {
+    margin: 10px auto auto auto;
+    color: var(--secondary-text-color);
+}
+
+.titleGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto auto auto auto;
+}
+.titleGroup > h2 {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+/* <Footer /> */
+footer {
+    background-color: var(--secondary-color);
+    color: var(--secondary-text-color);
+    padding: 24px;
+    margin: 24px;
+}
+
+footer > h3 {
+    text-align: end;
+    margin-right: 5%;
+}
