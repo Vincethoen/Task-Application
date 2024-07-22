@@ -12,10 +12,11 @@ const Content = () => {
   }
   return (
     <section>
-      {context.map(group => (
-        <Group
+      {context.map((group, i: number) => (
+        <Group        
         key={group.id}
         id={group.id}
+        index={i}
         />
       ))}
     </section>

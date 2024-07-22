@@ -4,7 +4,7 @@ import TitleGroup from './NestedGroup/TitleGroup';
 import Item from './NestedGroup/Item';
 import './../style.css';
 
-const Group = ({ id }: { id: string; }) => {
+const Group = ({ id, index }: { id: string; index: number }) => {
 
   const TasksContext = useContext<TaskType[] | undefined>(TaskContext);
 
@@ -20,6 +20,9 @@ const Group = ({ id }: { id: string; }) => {
   if (!TasksContext) {
     return null;
   }
+
+  const filteredTasks = TasksContext.filter(task => task.groupIndex === index);
+
   return (
     <article>
       <TitleGroup
@@ -27,7 +30,7 @@ const Group = ({ id }: { id: string; }) => {
         id={id}
       />
       <ul ref={ulRef}>
-        {TasksContext.map(task => (
+        {filteredTasks.map(task => (
           <Item
           key={task.id}
           id={task.id}

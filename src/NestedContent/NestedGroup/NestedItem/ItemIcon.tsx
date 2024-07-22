@@ -1,25 +1,36 @@
-import { useContext } from 'react';
-import { TaskType, TaskContext } from '../../../App';
+import { useContext, useState, useEffect } from 'react';
+import { TaskType, TaskContext, TaskFunctionsType, TaskFunctionsContext } from '../../../App';
 import '../../../../src/style.css';
 
-const ItemIcon = ({ id }: { id: string; }) => {
+const ItemIcon = ({ id }: { id: string }) => {
+  const [icon, setIcon] = useState<string>('');
 
   const context = useContext<TaskType[] | undefined>(TaskContext);
+  const functionContext = useContext<TaskFunctionsType | undefined>(TaskFunctionsContext);
 
-  const handleIcon = () => {
-    if (context === undefined) {
-      return undefined;
-    } else {
-      const task = context.find(task => task.id === id);
-      if (task !== undefined) {
-        return task.icon;
+  useEffect(() => {
+    const handleIcon = () => {
+      if (context) {
+        const task = context.find(task => task.id === id);
+        if (task) {
+          setIcon(task.icon);
+        }
       }
-    }
-    return undefined;
+    };
+
+    handleIcon();
+  }, [id, context]);
+
+  if (!functionContext || !context) {
+    return null;
+  }
+
+  const newIcon = () => {
+    functionContext.newRandomIcon(id);
   }
 
   return (
-      <img src={handleIcon()} alt="Item Icon" />
+    <img src={icon} alt="Item Icon" onDoubleClick={newIcon} />
   );
 }
 

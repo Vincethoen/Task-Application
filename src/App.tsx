@@ -23,15 +23,19 @@ export type TaskType = {
 
 export type GroupFunctionsType = {
   addGroup: () => void;
-  editGroup: () => void;
+  editGroup: (text: string, id: string) => void;
   removeGroup: () => void;
 };
 
 export type TaskFunctionsType = {
   addTask: () => void;
-  editTask: () => void;
+  editTask: (text: string, id: string) => void;
+  editSubject: (text: string, id: string) => void;
   removeTask: () => void;
   searchTask: (searchTerm: string) => void;
+  incrementTask: (task: TaskType) => void;
+  decrementTask: (task: TaskType) => void;
+  newRandomIcon: (id: string) => void;
 };
 
 export const GroupFunctionsContext = createContext<GroupFunctionsType | undefined>(undefined);
@@ -73,8 +77,12 @@ function App() {
     setGroup((prevGroup) => [...prevGroup, newGroup]);
   }
 
-  const editGroup = () => {
-    console.log('editGroup');
+  const editGroup = (text: string, id: string) => {
+    setGroup(prevGroup => {
+      return prevGroup.map(group => group.id === id 
+        ? { ...group, name: text } : group
+      )
+    })
   }
 
   const removeGroup = () => {
@@ -85,6 +93,15 @@ function App() {
   const getRandomIcon = () => {
     const randomIndex = Math.floor(Math.random() * 20) + 1;
     return `../../../../src/assets/icons/${String(randomIndex).padStart(2, '0')}.png`;
+  }
+  const newRandomIcon = (id: string) => {
+    const newIcon = getRandomIcon();
+    setTask(prevTask => {
+      return prevTask.map(task => task.id === id 
+        ? { ...task, icon: newIcon} : task
+      )
+    })
+    return newIcon;
   }
 
   function getRandomTask() {
@@ -112,6 +129,25 @@ function App() {
 
     return tasks[randomIndex];
   }
+  
+  const incrementTask = (currentTask: TaskType) => {
+    const newIndex = (currentTask.groupIndex + 1) % group.length;
+
+    setTask(prevTask => {
+      return prevTask.map(task => task.id === currentTask.id
+        ? { ...task, groupIndex: newIndex } : task
+      )
+    })
+  }
+  const decrementTask = (currentTask: TaskType) => {
+    const newIndex = (currentTask.groupIndex - 1 + group.length) % group.length;
+
+    setTask(prevTask => {
+      return prevTask.map(task => task.id === currentTask.id 
+        ? { ...task, groupIndex: newIndex } : task
+      )
+    })
+  }
 
   /* Task functions  */
 
@@ -134,9 +170,21 @@ function App() {
     setCount((prevCount) => prevCount + 1);
   };
 
-  const editTask = () => {
-    console.log('editTask');
-  };
+  const editTask = (text: string, id: string) => {
+    setTask(prevTask => {
+      return prevTask.map(task => task.id === id 
+        ? { ...task, task: text } : task
+      )
+    })
+  }
+
+  const editSubject = (text: string, id: string) => {
+    setTask(prevTask => {
+      return prevTask.map(task => task.id === id 
+        ? { ...task, subject: text } : task
+      )
+    })
+  }
 
   const removeTask = () => {
     console.log('deleteTask');
@@ -155,8 +203,12 @@ function App() {
   const taskFunctions: TaskFunctionsType = {
     addTask,
     editTask,
+    editSubject,
     removeTask,
     searchTask,
+    incrementTask,
+    decrementTask,
+    newRandomIcon,
   };
 
   // temp

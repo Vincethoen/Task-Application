@@ -1,31 +1,73 @@
-import { useContext } from 'react';
-import { TaskType, TaskContext } from '../../../App';
+import { useContext, useState, useEffect, ChangeEvent } from 'react';
+import { TaskType, TaskContext, TaskFunctionsType, TaskFunctionsContext } from '../../../App';
 import '../../../style.css';
 
 const ItemInput = ({ id }: { id: string; }) => {
+  const [text, setText] = useState<string>('');
+  const [edit, setEdit] = useState<boolean>(false);
 
   const context = useContext<TaskType[] | undefined>(TaskContext);
+  const functionContext = useContext<TaskFunctionsType | undefined>(TaskFunctionsContext);
 
-  const handleTask = () => {
-    if (context === undefined) {
-      return null;
-    } else {
-      const task = context.find(task => task.id === id);
-      if (task !== undefined) {
-        return task.task;
+  useEffect(() => {
+    if (!edit) {
+      if (text === '') {
+        setText(getText)
       }
     }
-    return null;
+    }, [text])
+    
+  const getText = () => {
+    if (!context) {
+      return '';
+    }
+    const task = context.find(task => task.id === id);  
+    if (task) {
+      return task.task;
+    }
+    return '';
   }
 
-  if (context === undefined) {
-    return null;
+  const setNewText = (e: ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
   }
+
+  const setEditMode = () => {
+    setEdit(!edit);
+  }
+
+  function handleEditTask(e: any) {
+    e.preventDefault();
+    if (!functionContext) {
+      return
+    }
+    functionContext.editTask( text, id);
+    setEditMode();
+  }
+
+  
   return (
-    <div className='item-input'>
-      {handleTask()}
+    <div className='item-input' onDoubleClick={setEditMode}>
+      {edit ? (
+        <form className="edit-form">
+          <input
+            type='text'
+            value={text}
+            onInput={setNewText}
+            onBlur={(e) => handleEditTask(e)}
+            autoFocus
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleEditTask(e);
+              }
+            }}
+          />
+        </form>
+      ) : (
+        <p>{text}</p>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default ItemInput
+export default ItemInput;
