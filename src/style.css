@@ -1,6 +1,6 @@
 @font-face {
     font-family: F77MinecraftRegular;
-    src: url(../assets/F77MinecraftRegular.ttf);
+    src: url(./assets/F77MinecraftRegular.ttf);
 }
 
 :root {
@@ -137,6 +137,7 @@ li {
     margin: auto 0px auto auto;
 }
 .status-container > button {
+    padding: 12px;
     margin: auto 2px auto auto;
 }
 
